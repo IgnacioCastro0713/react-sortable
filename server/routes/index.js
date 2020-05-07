@@ -1,8 +1,8 @@
 const express= require('express');
 const app = express();
 
-const taskRoutes = require('./task');
+const taskRoutes = require('./task.route');
 
-app.use('/api', taskRoutes);
+app.use('/task', taskRoutes);
 
 module.exports = app;

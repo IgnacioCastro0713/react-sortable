@@ -13,8 +13,8 @@ module.exports.getTasks = async (req, res) => {
 }
 
 module.exports.updateTask = async (req, res) => {
-	const {entries} = req.body;
-	for (const [i, id] of entries()) {
+	const tasksIds = req.body;
+	for (const [i, id] of tasksIds.entries()) {
 		await Task.updateOne({_id: id}, {sorting: i});
 	}
 	res.json('the list was ordered');
