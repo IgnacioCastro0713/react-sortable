@@ -1,18 +1,18 @@
 const Task = require("../models/task");
 
-module.exports.saveTask = async (req, res) => {
+exports.saveTask = async (req, res) => {
 	const task = new Task(req.body);
 	task.sorting = await Task.estimatedDocumentCount();
 	await task.save();
 	res.json(task);
 }
 
-module.exports.getTasks = async (req, res) => {
+exports.getTasks = async (req, res) => {
 	const tasks = await Task.find();
 	res.json(tasks);
 }
 
-module.exports.updateTask = async (req, res) => {
+exports.updateTask = async (req, res) => {
 	const tasksIds = req.body;
 	for (const [i, id] of tasksIds.entries()) {
 		await Task.updateOne({_id: id}, {sorting: i});
